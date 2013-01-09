@@ -1,0 +1,14 @@
+@CHARSET "ISO-8859-1";
+
+* { font-family: Courier;}
+
+#container { 
+	border: 1px solid;
+	width: 550px;
+	margin: 0 auto;
+	padding: 10px 10px 10px 10px;
+}
+
+#inlogForm { 
+	padding-left: 25px;
+}
