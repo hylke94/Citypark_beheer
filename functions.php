@@ -53,8 +53,6 @@ function processLogin(){
 			printf("Prepared Statement Error: %s\n", $mysqli->error);
 		}
 	}
-	
-	print_r($errors);
 	$smarty->assign("errors", $errors);
 }
 
