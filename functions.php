@@ -6,9 +6,11 @@
 
 require_once 'config/config.inc.php';
 
+
 /**
- * TODO: HASHING
+ * Verwerkt de login
  */
+
 function processLogin(){
 	global $smarty;
 	
@@ -27,18 +29,22 @@ function processLogin(){
 		$query = "SELECT username FROM users WHERE username = ? AND password = ?";
 		
 		if ($stmt = $mysqli->prepare($query)){
-			$stmt->bind_param("ss", $username, $password);
+			$stmt->bind_param("ss", $username, sha1($password));
 			
 			if($stmt->execute()){
 				
 				$stmt->store_result();
-				
-				if ($stmt->num_rows >= 1){
-					$stmt->bind_result($username_res);
-							
-					while ($stmt->fetch()){
-						printf("%s \n", $username_res);
-					}
+			
+				$stmt->bind_result($username_res);
+
+				if ($stmt->num_rows == 1){
+					
+					$stmt->fetch();
+					
+					$_SESSION['naam']		= $username_res;
+					$_SESSION['ingelogd'] 	= 1;
+					
+					header('Location: ?page=index_beheer');
 				}
 				else { 
 					$errors[] = "Account bestaat niet";
@@ -56,6 +62,47 @@ function processLogin(){
 	$smarty->assign("errors", $errors);
 }
 
+
+/**
+ * Verwerkt het blokkeren van een kaart.
+ */
+
+function processBlockCard(){
+	global $smarty;
+	
+	$errors = array();
+	$pasnr 	= trim($_POST['passnumber']);
+	
+	if (!is_numeric($pasnr))
+		$errors[] = "Het pasnummber bestaat uit getallen, niet letters";
+	
+	if (empty($pasnr)){
+		$errors[] = "Vul het formulier in";
+	}
+	
+	$query = "";
+	
+	$smarty->assign("errors", $errors);
+	
+}
+
+
+
+
+/**
+ * Vernietig de sessie en stuur de gebruiker terug naar de index.
+ */
+
+function logoutUser(){
+	session_destroy();
+	header("Location: index.php");
+}
+
+/**
+ * Generate a random Salt.
+ * @param int $max
+ * @return string
+ */
 
 function generateSalt($max = 15) {
 	$characterList = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%&*?";
