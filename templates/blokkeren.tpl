@@ -19,8 +19,8 @@
 {/if}
 
 <form action="{$SCRIPT_NAME}?page=blokkeren" method="POST" name="blockForm">
-	<label for="pasnr">Pasnummer</label>
-	<input type="text" id="pasnr" name="passnumber" />
+	<label for="klantNaam">Klantnaam</label>
+	<input type="text" id="klantNaam" name="klantNaam" />
 	
 	<input type="submit" name="submit" value="blokkeren" />
 	<input type="hidden" name="blokkeren" value="1" />

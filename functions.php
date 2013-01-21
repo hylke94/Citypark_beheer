@@ -71,13 +71,10 @@ function processBlockCard(){
 	global $smarty;
 	
 	$errors = array();
-	$pasnr 	= trim($_POST['passnumber']);
-	
-	if (!is_numeric($pasnr))
-		$errors[] = "Het pasnummber bestaat uit getallen, niet letters";
-	
-	if (empty($pasnr)){
-		$errors[] = "Vul het formulier in";
+	$klantnaam 	= trim($_POST['klantNaam']);
+
+	if (empty($klantnaam)){
+		$errors[] = "Vul een naam in";
 	}
 	
 	$query = "";
