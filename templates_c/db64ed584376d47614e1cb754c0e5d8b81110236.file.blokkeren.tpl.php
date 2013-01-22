@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2013-01-17 16:08:55
+<?php /* Smarty version Smarty-3.1.12, created on 2013-01-22 10:44:54
          compiled from "templates\blokkeren.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2104850f816935fd399-64312574%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,13 +7,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'db64ed584376d47614e1cb754c0e5d8b81110236' => 
     array (
       0 => 'templates\\blokkeren.tpl',
-      1 => 1358438758,
+      1 => 1358848499,
       2 => 'file',
     ),
     'c131b6f68001cba64f85338acea39c6401c3aaeb' => 
     array (
       0 => '.\\templates\\index_beheer.tpl',
-      1 => 1358436417,
+      1 => 1358497974,
       2 => 'file',
     ),
   ),
@@ -93,8 +93,8 @@ $_smarty_tpl->tpl_vars['error']->_loop = true;
 
 <form action="<?php echo $_smarty_tpl->tpl_vars['SCRIPT_NAME']->value;?>
 ?page=blokkeren" method="POST" name="blockForm">
-	<label for="pasnr">Pasnummer</label>
-	<input type="text" id="pasnr" name="passnumber" />
+	<label for="klantNaam">Klantnaam</label>
+	<input type="text" id="klantNaam" name="klantNaam" />
 	
 	<input type="submit" name="submit" value="blokkeren" />
 	<input type="hidden" name="blokkeren" value="1" />

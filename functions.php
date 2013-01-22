@@ -26,7 +26,7 @@ function processLogin(){
 		
 		$mysqli = new mysqli (MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DB);
 		
-		$query = "SELECT username FROM users WHERE username = ? AND password = ?";
+		$query = "SELECT username FROM beheerders WHERE username = ? AND password = ?";
 		
 		if ($stmt = $mysqli->prepare($query)){
 			$stmt->bind_param("ss", $username, sha1($password));
@@ -76,9 +76,13 @@ function processBlockCard(){
 	if (empty($klantnaam)){
 		$errors[] = "Vul een naam in";
 	}
+	else { 
 	
-	$query = "";
-	
+		$query = "SELECT klanten.klantnr,  
+				FROM klanten, klantenpas, bezoekerspas
+					WHERE klanten.klantnr = klantenpas.klantnr 
+						AND klantenpas.pasnr = bezoekerspas.pasnr";
+	}
 	$smarty->assign("errors", $errors);
 	
 }
@@ -111,3 +115,5 @@ function generateSalt($max = 15) {
 	}
 	return $salt;
 }
+
+?>
