@@ -6,6 +6,7 @@
 
 require_once 'config/config.inc.php';
 
+$mysqli = new mysqli (MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DB);
 
 /**
  * Verwerkt de login
@@ -25,7 +26,6 @@ function processLogin(){
 		$errors[] = "U ben vergeten enkele verplichte velden in te vullen.";
 	} else {
 		
-		$mysqli = new mysqli (MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DB);
 		
 		$query = "SELECT USER, ADMIN FROM login WHERE USER = ? AND PASS = ?";
 		
@@ -85,10 +85,15 @@ function processBlockCard(){
 	}
 	else { 
 	
-		$query = "SELECT klanten.klantnr,  
-				FROM klanten, klantenpas, bezoekerspas
-					WHERE klanten.klantnr = klantenpas.klantnr 
-						AND klantenpas.pasnr = bezoekerspas.pasnr";
+		$query = "SELECT * from login, pas WHERE login.KLANT_NR = pas.KLANT_NR AND ACHTERNAAM = ?";
+		
+		if ($stmt = $mysqli->prepare($query)){
+			$stmt->bind_param("s", $klantnaam);
+			
+			
+		}
+		
+		
 	}
 	$smarty->assign("errors", $errors);
 	
