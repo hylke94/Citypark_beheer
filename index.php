@@ -9,9 +9,7 @@ session_start();
 
 //debug
 
-print_r($_SESSION);
 print_r($_POST);
-print_r($_GET);
 
 
 $smarty =  new Smarty();
@@ -24,8 +22,12 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 	if (isset($_POST['loginForm'])){
 		processLogin();
 	}
-	if (isset($_POST['passnumber'])){
-		processBlockCard();
+	if (isset($_POST['search'])){
+		displayCostumerCards();
+	}
+	if (isset($_POST['blocked'])){
+		$klantnr = $_POST['klantnr'];
+		blockCosumerCard($klantnr);
 	}
 	
 }

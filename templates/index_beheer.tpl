@@ -16,9 +16,6 @@
 				<div class="header">
 					<h1>Citypark Beheer</h1>
 				</div>
-				<div class="welcome">
-					<span class="welcometext">Welkom {$smarty.session.naam}</span>
-				</div>
 			</div>
 			<div class="left">
 				<ul>
@@ -43,7 +40,7 @@
 			<div class="right">
 				<div class="rightInner">
 					{block name="contentRight"}
-						Test
+						Welkom op de beheerspagina, {$smarty.session.naam}
 					{/block}
 				</div>
 			</div>

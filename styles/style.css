@@ -54,3 +54,19 @@
 .clearfix {
 	clear: both
 }
+
+/**
+ * Tabellen Beheer
+ */
+
+table.passen {
+	width: 720px;
+	text-align: center;
+}
+
+.updateGelukt {
+	background: lightgreen;
+	padding: 15px;
+	border: 1px solid green;
+	font-weight: bold;
+}

@@ -6,7 +6,6 @@
 
 require_once 'config/config.inc.php';
 
-$mysqli = new mysqli (MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DB);
 
 /**
  * Verwerkt de login
@@ -26,6 +25,7 @@ function processLogin(){
 		$errors[] = "U ben vergeten enkele verplichte velden in te vullen.";
 	} else {
 		
+		$mysqli = new mysqli (MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DB);
 		
 		$query = "SELECT USER, ADMIN FROM login WHERE USER = ? AND PASS = ?";
 		
@@ -67,39 +67,128 @@ function processLogin(){
 		}
 	}
 	$smarty->assign("errors", $errors);
+	
+	$mysqli->close();
 }
+
 
 
 /**
  * Verwerkt het blokkeren van een kaart.
  */
 
-function processBlockCard(){
+function displayCostumerCards(){
 	global $smarty;
 	
+	$id = 0;
 	$errors = array();
-	$klantnaam 	= trim($_POST['klantNaam']);
+	$klantVoornaam 	= trim($_POST['klantVoornaam']);
+	$klantAchternaam = trim($_POST['klantAchternaam']);
 
-	if (empty($klantnaam)){
+	if (empty($klantVoornaam) && empty($klantAchternaam)){
 		$errors[] = "Vul een naam in";
 	}
 	else { 
-	
-		$query = "SELECT * from login, pas WHERE login.KLANT_NR = pas.KLANT_NR AND ACHTERNAAM = ?";
+		
+		$mysqli = new mysqli (MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DB);
+		$query = "SELECT * FROM PAS WHERE KLANT_NR = (SELECT KLANT_NR FROM klanten WHERE VOORNAAM = ? AND ACHTERNAAM = ?)";
 		
 		if ($stmt = $mysqli->prepare($query)){
-			$stmt->bind_param("s", $klantnaam);
+			$stmt->bind_param("ss", $klantVoornaam, $klantAchternaam);
 			
+			if ($stmt->execute()){
 			
+				$smarty->assign("showCards", 1);
+				$smarty->assign("voornaam", $klantVoornaam);
+				$smarty->assign("achternaam", $klantAchternaam);
+				
+				
+				$result = $stmt->get_result();
+				
+				while ($row = $result->fetch_assoc()) {
+					$smarty->assign("rows", $result->num_rows);
+					
+					$results[] = $row;
+					
+					print_r($results);
+					
+					$smarty->assign("results", $results);
+					
+					$smarty->assign("klantnr", $results[0]['KLANT_NR']);						
+				}
+			
+			}
+			else {
+				printf("Execute error: %s", $stmt->error);
+			}
 		}
-		
-		
+		else {
+			printf("Prepared Statement Error: %s\n", $mysqli->error);
+		}
+		$mysqli->close();
 	}
 	$smarty->assign("errors", $errors);
-	
 }
 
 
+/**
+ * Blokkeer een kaart in de database aan de hand van het klantnummer
+ */
+
+function blockCosumerCard($klantnr){
+	
+	global $smarty;
+
+	$mysqli = new mysqli (MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DB);
+		
+	$errors = array();
+	
+	if (isset($_POST['blockCbx']) == "on"){
+		$query = "UPDATE pas SET STATUS = 1 WHERE KLANT_NR = ?";
+		
+		if ($stmt = $mysqli->prepare($query)){
+			$stmt->bind_param("i", $klantnr);
+			
+			if ($stmt->execute()){
+				$updateSuccess = $stmt->affected_rows;
+				
+				if ($updateSuccess){
+					$smarty->assign("block",1);
+				}
+			}
+			else {
+				printf("Execute error: %s", $stmt->error);
+			}
+		}
+		else {
+			printf("Prepared Statement Error: %s\n", $mysqli->error);
+		}
+	}
+	else {
+		$query = "UPDATE pas SET STATUS = 0 WHERE KLANT_NR = ?";
+			
+		if ($stmt = $mysqli->prepare($query)){
+			$stmt->bind_param("i", $klantnr);
+		
+			if ($stmt->execute()){
+				$updateSuccess = $stmt->affected_rows;
+					
+				if ($updateSuccess){
+					$smarty->assign("unblock",1);
+				}
+			}
+			else {
+				printf("Execute error: %s", $stmt->error);
+			}
+		}
+		else {
+			printf("Prepared Statement Error: %s\n", $mysqli->error);
+		}
+	}
+	
+	$smarty->assign("errors", $errors);
+	
+}
 
 
 /**

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2013-01-22 10:44:54
+<?php /* Smarty version Smarty-3.1.12, created on 2013-01-24 13:42:36
          compiled from "templates\blokkeren.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2104850f816935fd399-64312574%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,13 +7,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'db64ed584376d47614e1cb754c0e5d8b81110236' => 
     array (
       0 => 'templates\\blokkeren.tpl',
-      1 => 1358848499,
+      1 => 1359034954,
       2 => 'file',
     ),
     'c131b6f68001cba64f85338acea39c6401c3aaeb' => 
     array (
       0 => '.\\templates\\index_beheer.tpl',
-      1 => 1358497974,
+      1 => 1358937509,
       2 => 'file',
     ),
   ),
@@ -42,10 +42,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			<div id="top">
 				<div class="header">
 					<h1>Citypark Beheer</h1>
-				</div>
-				<div class="welcome">
-					<span class="welcometext">Welkom <?php echo $_SESSION['naam'];?>
-</span>
 				</div>
 			</div>
 			<div class="left">
@@ -90,16 +86,98 @@ $_smarty_tpl->tpl_vars['error']->_loop = true;
 		</ul>
 	</div>
 <?php }?>
+<?php if (isset($_smarty_tpl->tpl_vars['block']->value)){?>
+	<p class="updateGelukt">Gebruiker is geblokkeerd</p>
+<?php }?>
+<?php if (isset($_smarty_tpl->tpl_vars['unblock']->value)){?>
+	<p class="updateGelukt">Gebruiker is gedeblokkeerd</p>
+<?php }?>
+
+<form action="<?php echo $_smarty_tpl->tpl_vars['SCRIPT_NAME']->value;?>
+?page=blokkeren" method="POST" name="findAccount">
+	<label for="klantVoornaam">Voornaam klant</label>
+	<input type="text" id="klantVoornaam" name="klantVoornaam" />
+	<br />
+	<label for="klantAchternaam">Achternaam klant</label>
+	<input type="text" id="klantAchternaam" name="klantAchternaam" />
+	<br />
+	<input type="submit" name="submit" value="Zoek op" />
+	<input type="hidden" name="search" value="1" />
+</form>
+
+<?php if (isset($_smarty_tpl->tpl_vars['showCards']->value)||isset($_smarty_tpl->tpl_vars['blocked']->value)){?>
+<hr>
+
+<p>Kaarten voor gebruiker <b><?php echo $_smarty_tpl->tpl_vars['voornaam']->value;?>
+ <?php echo $_smarty_tpl->tpl_vars['achternaam']->value;?>
+</b>: </p>
 
 <form action="<?php echo $_smarty_tpl->tpl_vars['SCRIPT_NAME']->value;?>
 ?page=blokkeren" method="POST" name="blockForm">
-	<label for="klantNaam">Klantnaam</label>
-	<input type="text" id="klantNaam" name="klantNaam" />
+	<table class="passen" cellspacing="5">
+		<tr>
+			<th>Klant NR</th>
+			<th>Pas ID</th>
+			<th>Waarde</th>
+			<th>RFID</th>
+			<th>Type</th>
+			<th>Inrijdtijd</th>
+			<th>Geblokkeerd</th>
+		</tr>
+			<?php if (isset($_smarty_tpl->tpl_vars['smarty']->value['section']['nr'])) unset($_smarty_tpl->tpl_vars['smarty']->value['section']['nr']);
+$_smarty_tpl->tpl_vars['smarty']->value['section']['nr']['name'] = 'nr';
+$_smarty_tpl->tpl_vars['smarty']->value['section']['nr']['loop'] = is_array($_loop=$_smarty_tpl->tpl_vars['results']->value) ? count($_loop) : max(0, (int)$_loop); unset($_loop);
+$_smarty_tpl->tpl_vars['smarty']->value['section']['nr']['show'] = true;
+$_smarty_tpl->tpl_vars['smarty']->value['section']['nr']['max'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['nr']['loop'];
+$_smarty_tpl->tpl_vars['smarty']->value['section']['nr']['step'] = 1;
+$_smarty_tpl->tpl_vars['smarty']->value['section']['nr']['start'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['nr']['step'] > 0 ? 0 : $_smarty_tpl->tpl_vars['smarty']->value['section']['nr']['loop']-1;
+if ($_smarty_tpl->tpl_vars['smarty']->value['section']['nr']['show']) {
+    $_smarty_tpl->tpl_vars['smarty']->value['section']['nr']['total'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['nr']['loop'];
+    if ($_smarty_tpl->tpl_vars['smarty']->value['section']['nr']['total'] == 0)
+        $_smarty_tpl->tpl_vars['smarty']->value['section']['nr']['show'] = false;
+} else
+    $_smarty_tpl->tpl_vars['smarty']->value['section']['nr']['total'] = 0;
+if ($_smarty_tpl->tpl_vars['smarty']->value['section']['nr']['show']):
+
+            for ($_smarty_tpl->tpl_vars['smarty']->value['section']['nr']['index'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['nr']['start'], $_smarty_tpl->tpl_vars['smarty']->value['section']['nr']['iteration'] = 1;
+                 $_smarty_tpl->tpl_vars['smarty']->value['section']['nr']['iteration'] <= $_smarty_tpl->tpl_vars['smarty']->value['section']['nr']['total'];
+                 $_smarty_tpl->tpl_vars['smarty']->value['section']['nr']['index'] += $_smarty_tpl->tpl_vars['smarty']->value['section']['nr']['step'], $_smarty_tpl->tpl_vars['smarty']->value['section']['nr']['iteration']++):
+$_smarty_tpl->tpl_vars['smarty']->value['section']['nr']['rownum'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['nr']['iteration'];
+$_smarty_tpl->tpl_vars['smarty']->value['section']['nr']['index_prev'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['nr']['index'] - $_smarty_tpl->tpl_vars['smarty']->value['section']['nr']['step'];
+$_smarty_tpl->tpl_vars['smarty']->value['section']['nr']['index_next'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['nr']['index'] + $_smarty_tpl->tpl_vars['smarty']->value['section']['nr']['step'];
+$_smarty_tpl->tpl_vars['smarty']->value['section']['nr']['first']      = ($_smarty_tpl->tpl_vars['smarty']->value['section']['nr']['iteration'] == 1);
+$_smarty_tpl->tpl_vars['smarty']->value['section']['nr']['last']       = ($_smarty_tpl->tpl_vars['smarty']->value['section']['nr']['iteration'] == $_smarty_tpl->tpl_vars['smarty']->value['section']['nr']['total']);
+?>
+			<tr>
+				<td valign="middle"><?php echo $_smarty_tpl->tpl_vars['results']->value[$_smarty_tpl->getVariable('smarty')->value['section']['nr']['index']]['KLANT_NR'];?>
+</td>
+				<td valign="middle"><?php echo $_smarty_tpl->tpl_vars['results']->value[$_smarty_tpl->getVariable('smarty')->value['section']['nr']['index']]['PAS_ID'];?>
+</td>
+				<td valign="middle"><?php echo $_smarty_tpl->tpl_vars['results']->value[$_smarty_tpl->getVariable('smarty')->value['section']['nr']['index']]['PAS_TYPE'];?>
+</td>
+				<td valign="middle"><?php echo $_smarty_tpl->tpl_vars['results']->value[$_smarty_tpl->getVariable('smarty')->value['section']['nr']['index']]['RFID'];?>
+</td>
+				<td valign="middle"><?php echo $_smarty_tpl->tpl_vars['results']->value[$_smarty_tpl->getVariable('smarty')->value['section']['nr']['index']]['WAARDE'];?>
+</td>
+				<td valign="middle"><?php echo $_smarty_tpl->tpl_vars['results']->value[$_smarty_tpl->getVariable('smarty')->value['section']['nr']['index']]['INRIJDTIJD'];?>
+</td>
+				<td valign="middle"><?php echo $_smarty_tpl->tpl_vars['results']->value[$_smarty_tpl->getVariable('smarty')->value['section']['nr']['index']]['STATUS'];?>
+</td>
+				<td>
+					<input type="checkbox" name="blockCbx" <?php if ($_smarty_tpl->tpl_vars['results']->value[$_smarty_tpl->getVariable('smarty')->value['section']['nr']['index']]['STATUS']==1){?> checked="checked"<?php }?> />
+				</td>
+			</tr>
+			<?php endfor; endif; ?>
+		</tr>
+	</table>
 	
-	<input type="submit" name="submit" value="blokkeren" />
-	<input type="hidden" name="blokkeren" value="1" />
+	<input type="submit" name="block" />
+	<input type="hidden" name="blocked" value="1" />
+	<input type="hidden" name="klantnr" value="<?php echo $_smarty_tpl->tpl_vars['klantnr']->value;?>
+" />
 </form>
 
+<?php }?>
 
 				</div>
 			</div>
