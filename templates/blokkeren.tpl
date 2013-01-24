@@ -55,9 +55,9 @@
 			<tr>
 				<td valign="middle">{$results[nr].KLANT_NR}</td>
 				<td valign="middle">{$results[nr].PAS_ID}</td>
-				<td valign="middle">{$results[nr].PAS_TYPE}</td>
-				<td valign="middle">{$results[nr].RFID}</td>
 				<td valign="middle">{$results[nr].WAARDE}</td>
+				<td valign="middle">{$results[nr].RFID}</td>
+				<td valign="middle">{$results[nr].TYPE}</td>
 				<td valign="middle">{$results[nr].INRIJDTIJD}</td>
 				<td valign="middle">{$results[nr].STATUS}</td>
 				<td>
