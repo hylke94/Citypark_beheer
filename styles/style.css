@@ -59,7 +59,7 @@
  * Tabellen Beheer
  */
 
-table.passen {
+table.passen, .bestaandeTarieven, .nieuwTarief {
 	width: 720px;
 	text-align: center;
 }

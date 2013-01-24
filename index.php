@@ -29,6 +29,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 		$klantnr = $_POST['klantnr'];
 		blockCosumerCard($klantnr);
 	}
+	if (isset($_POST['addFare'])){
+		addFare();
+	}
 	
 }
 
@@ -40,6 +43,9 @@ else {
 	switch ($_GET['page']){
 		case 'uitloggen':
 			logoutUser();
+		break;
+		case 'tariefbeheer':
+			showFares();
 		break;
 	}
 

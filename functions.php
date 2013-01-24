@@ -129,6 +129,7 @@ function displayCostumerCards(){
 }
 
 
+
 /**
  * Blokkeer een kaart in de database aan de hand van het klantnummer
  */
@@ -189,6 +190,86 @@ function blockCosumerCard($klantnr){
 }
 
 
+
+/**
+ * Show all the current fares listed in the database
+ */
+
+function showFares(){
+	global $smarty;
+	
+	
+	$mysqli = new mysqli (MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DB);
+	
+	$errors = array();
+	
+	$query = "SELECT DISTINCT * FROM tarieven";
+	
+	if($stmt = $mysqli->prepare($query)){
+		$stmt->execute();
+		
+		
+		$result = $stmt->get_result();
+		
+		while ($row = $result->fetch_assoc()) {				
+			$results[] = $row;
+			$cats[] = $row['CAT_NR'];
+			$dagen[] = $row['DAG'];
+			
+			$smarty->assign("results", $results);
+		}
+
+		
+		$smarty->assign("dagen", $dagen);
+		$smarty->assign("cats", $cats);
+	}	
+}
+
+/**
+ * Voeg een nieuw tarief toe aan de database, gebruikmakend van dagen en categorieën.
+ */
+
+function addFare(){
+	global $smarty;
+	
+	$errors = array();
+	$dag = $_POST['dagen'];
+	$starttijd = trim($_POST['starttijd']);
+	$eindtijd = trim($_POST['eindtijd']);
+	$ingangsdatum = trim($_POST['ingangsdatum']);
+	$cat = trim($_POST['cats']);
+	
+	if (empty($starttijd) || empty($eindtijd) || empty($ingangsdatum)){
+		$errors[] = "Vul alle velden in";
+	}
+	else {
+		$mysqli = new mysqli (MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DB);
+		
+		$query = "INSERT INTO tarieven (DAG, STARTTIJD, EINDTIJD, CAT_NR, INGANGSDATUM) VALUES (?, ?, ?, ?, ?)";
+		
+		if ($stmt = $mysqli->prepare($query)){
+			$stmt->bind_param("sssis", $dag, $starttijd, $eindtijd, $cat, $ingangsdatum);
+			
+			if ($stmt->execute()){
+
+				$updateSuccess = $stmt->affected_rows;
+				
+				if ($updateSuccess){
+					$smarty->assign("added",1);
+				}
+			}
+			else {
+				printf("Execute error: %s", $stmt->error);
+			}
+		}
+		else {
+			printf("Prepared Statement Error: %s\n", $mysqli->error);
+		}
+	}
+	
+	$smarty->assign("errors", $errors);
+	
+}
 /**
  * Vernietig de sessie en stuur de gebruiker terug naar de index.
  */
