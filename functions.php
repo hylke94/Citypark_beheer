@@ -30,7 +30,7 @@ function processLogin(){
 		$query = "SELECT USER, ADMIN FROM login WHERE USER = ? AND PASS = ?";
 		
 		if ($stmt = $mysqli->prepare($query)){
-			$stmt->bind_param("ss", $username, sha1($password));
+			$stmt->bind_param("ss", $username, sha1($password. "ditiseenhash"));
 			
 			if($stmt->execute()){
 				
@@ -91,7 +91,7 @@ function displayCostumerCards(){
 	else { 
 		
 		$mysqli = new mysqli (MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DB);
-		$query = "SELECT * FROM PAS, pas_type WHERE KLANT_NR = (SELECT KLANT_NR FROM klanten WHERE VOORNAAM = ? AND ACHTERNAAM = ?) AND pas.PAS_TYPE = pas_type.ID ";
+		$query = "SELECT KLANT_NR, PAS_TYPE, ID FROM PAS, pas_type WHERE KLANT_NR = (SELECT KLANT_NR FROM klanten WHERE VOORNAAM = ? AND ACHTERNAAM = ?) AND pas.PAS_TYPE = pas_type.ID ";
 		
 		if ($stmt = $mysqli->prepare($query)){
 			$stmt->bind_param("ss", $klantVoornaam, $klantAchternaam);
@@ -198,7 +198,6 @@ function blockCosumerCard($klantnr){
 function showFares(){
 	global $smarty;
 	
-	
 	$mysqli = new mysqli (MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DB);
 	
 	$errors = array();
@@ -206,23 +205,34 @@ function showFares(){
 	$query = "SELECT DISTINCT * FROM tarieven";
 	
 	if($stmt = $mysqli->prepare($query)){
-		$stmt->execute();
 		
 		
-		$result = $stmt->get_result();
-		
-		while ($row = $result->fetch_assoc()) {				
-			$results[] = $row;
-			$cats[] = $row['CAT_NR'];
-			$dagen[] = $row['DAG'];
+		if($stmt->execute()){
 			
-			$smarty->assign("results", $results);
-		}
-
+			$result = $stmt->get_result();
 		
-		$smarty->assign("dagen", $dagen);
-		$smarty->assign("cats", $cats);
+			$success = $stmt->affected_rows;
+			
+			while ($row = $result->fetch_assoc()) {				
+				$results[] = $row;
+				$cats[] = $row['CAT_NR'];
+				$dagen[] = $row['DAG'];
+				
+				$smarty->assign("dagen", $dagen);
+				$smarty->assign("cats", $cats);
+				
+				$smarty->assign("results", $results);
+			}
+		}
+		else {
+			printf("Execute error: %s", $stmt->error);
+		}
+	}
+	else {
+		$errors = "Geen data";
 	}	
+	
+	$smarty->assign("errors", $errors);
 }
 
 /**
