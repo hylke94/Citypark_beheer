@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2013-01-17 16:44:55
+<?php /* Smarty version Smarty-3.1.12, created on 2013-01-25 21:57:06
          compiled from "templates\rapportages.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1800750f82a878dc018-27541100%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -13,7 +13,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'c131b6f68001cba64f85338acea39c6401c3aaeb' => 
     array (
       0 => '.\\templates\\index_beheer.tpl',
-      1 => 1358436417,
+      1 => 1358937509,
       2 => 'file',
     ),
   ),
@@ -21,9 +21,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
-  'has_nocache_code' => false,
   'version' => 'Smarty-3.1.12',
   'unifunc' => 'content_50f82a8792c896_98320354',
+  'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_50f82a8792c896_98320354')) {function content_50f82a8792c896_98320354($_smarty_tpl) {?><?php if (!isset($_SESSION['ingelogd'])){?>
 <h1>Access denied</h1>
@@ -42,10 +42,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			<div id="top">
 				<div class="header">
 					<h1>Citypark Beheer</h1>
-				</div>
-				<div class="welcome">
-					<span class="welcometext">Welkom <?php echo $_SESSION['naam'];?>
-</span>
 				</div>
 			</div>
 			<div class="left">

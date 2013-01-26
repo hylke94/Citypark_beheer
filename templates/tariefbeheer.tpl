@@ -80,6 +80,7 @@ Hieronder een overzicht van de bestaande tarieven welke gelden op de daarbij hor
 				<td>-</td>
 				<td>-</td>
 			</tr>
+		</table>
 		{/if}
 	</form>
 	
