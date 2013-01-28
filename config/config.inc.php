@@ -5,9 +5,9 @@
  * 
  */
 
-define("MYSQL_HOST","localhost");
-define("MYSQL_USER","root");
-define("MYSQL_PASS","");
-define("MYSQL_DB","citypark_beheer");
+define("MYSQL_HOST", "xx");
+define("MYSQL_USER", "xx");
+define("MYSQL_PASS", "xx");
+define("MYSQL_DB", "xx");
 
 ?>
