@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2013-01-26 00:08:10
+<?php /* Smarty version Smarty-3.1.12, created on 2013-01-28 10:08:20
          compiled from "templates\tariefbeheer.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1983550f82a44346f01-76672211%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,13 +7,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'd44e278aa0c10926942db3b4b1e17bc7b885896b' => 
     array (
       0 => 'templates\\tariefbeheer.tpl',
-      1 => 1359158889,
+      1 => 1359364835,
       2 => 'file',
     ),
     'c131b6f68001cba64f85338acea39c6401c3aaeb' => 
     array (
       0 => '.\\templates\\index_beheer.tpl',
-      1 => 1358937509,
+      1 => 1359102818,
       2 => 'file',
     ),
   ),
@@ -25,7 +25,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'unifunc' => 'content_50f82a44362513_72164384',
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_50f82a44362513_72164384')) {function content_50f82a44362513_72164384($_smarty_tpl) {?><?php if (!is_callable('smarty_function_html_options')) include 'C:\\Users\\Pim\\git\\Citypark_beheer\\Citypark_beheer\\libs\\plugins\\function.html_options.php';
+<?php if ($_valid && !is_callable('content_50f82a44362513_72164384')) {function content_50f82a44362513_72164384($_smarty_tpl) {?><?php if (!is_callable('smarty_function_html_options')) include 'C:\\Users\\Pim\\Documents\\GitHub\\Citypark_beheer\\libs\\plugins\\function.html_options.php';
 ?><?php if (!isset($_SESSION['ingelogd'])){?>
 <h1>Access denied</h1>
 <?php }?>

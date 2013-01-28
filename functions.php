@@ -91,7 +91,7 @@ function displayCostumerCards(){
 	else { 
 		
 		$mysqli = new mysqli (MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DB);
-		$query = "SELECT KLANT_NR, PAS_TYPE, ID FROM PAS, pas_type WHERE KLANT_NR = (SELECT KLANT_NR FROM klanten WHERE VOORNAAM = ? AND ACHTERNAAM = ?) AND pas.PAS_TYPE = pas_type.ID ";
+		$query = "SELECT * FROM PAS, pas_type WHERE KLANT_NR = (SELECT KLANT_NR FROM klanten WHERE VOORNAAM = ? AND ACHTERNAAM = ?) AND pas.PAS_TYPE = pas_type.ID ";
 		
 		if ($stmt = $mysqli->prepare($query)){
 			$stmt->bind_param("ss", $klantVoornaam, $klantAchternaam);
