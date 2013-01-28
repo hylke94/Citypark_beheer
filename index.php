@@ -2,15 +2,7 @@
 require_once 'libs/Smarty.class.php';
 require_once 'functions.php';
 
-error_reporting(E_ALL);
 session_start();
-
-
-
-//debug
-
-print_r($_POST);
-
 
 $smarty =  new Smarty();
 
