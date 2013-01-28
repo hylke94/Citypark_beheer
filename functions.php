@@ -19,7 +19,6 @@ function processLogin(){
 	$password 	= trim($_POST['password']);
 	
 	$username_res = "";
-	$admin = 0;
 	
 	if(empty($username) || empty($password)){
 		$errors[] = "U ben vergeten enkele verplichte velden in te vullen.";
@@ -31,26 +30,30 @@ function processLogin(){
 		
 		if ($stmt = $mysqli->prepare($query)){
 			$stmt->bind_param("ss", $username, sha1($password. "ditiseenhash"));
-			
 			if($stmt->execute()){
 				
 				$stmt->store_result();
-			
-				$stmt->bind_result($username_res, $admin);
+				
+				$stmt->bind_result($username_res, $admin_res);
+				
+				
+				$stmt->fetch();
 				
 				if ($stmt->num_rows == 1){
 					
-					if ($admin == "0"){
+					if ($admin_res == 0){
 						$errors[] = "Gebruiker is geen beheerder";
 					}
+					else {
 					
 					
-					$stmt->fetch();
-					
-					$_SESSION['naam']		= $username_res;
-					$_SESSION['ingelogd'] 	= 1;
-					
-					header('Location: ?page=index_beheer');
+						$stmt->fetch();
+						
+						$_SESSION['naam']		= $username_res;
+						$_SESSION['ingelogd'] 	= 1;
+						
+						header('Location: ?page=index_beheer');
+					}
 				}
 				else { 
 					$errors[] = "Account bestaat niet";
