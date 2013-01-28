@@ -29,7 +29,7 @@
 						<a href="?page=tariefbeheer">Tariefbeheer</a>
 					</li>
 					<li>
-						<a href="?page=rapportages">Rapporgages</a>
+						<a href="?page=rapportages">Rapportages</a>
 					</li>
 					<li>
 						<a href="?page=uitloggen">Uitloggen</a>
