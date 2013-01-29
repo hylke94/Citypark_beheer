@@ -94,8 +94,9 @@ function displayCostumerCards(){
 	else { 
 		
 		$mysqli = new mysqli (MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DB);
-		$query = "SELECT * FROM PAS, pas_type WHERE KLANT_NR = (SELECT KLANT_NR FROM klanten WHERE VOORNAAM = ? AND ACHTERNAAM = ?) AND pas.PAS_TYPE = pas_type.ID ";
-		
+		$query = "SELECT * FROM PAS, pas_type WHERE KLANT_NR = (SELECT KLANT_NR FROM klanten WHERE VOORNAAM = ? AND ACHTERNAAM = ?) AND pas.PAS_TYPE = pas_type.ID";
+
+	
 		if ($stmt = $mysqli->prepare($query)){
 			$stmt->bind_param("ss", $klantVoornaam, $klantAchternaam);
 			
@@ -205,7 +206,7 @@ function showFares(){
 	
 	$errors = array();
 	
-	$query = "SELECT DISTINCT * FROM tarieven";
+	$query = "SELECT DISTINCT * FROM tarieven, dagen WHERE tarieven.DAG_ID = dagen.ID";
 	
 	if($stmt = $mysqli->prepare($query)){
 		
@@ -219,7 +220,7 @@ function showFares(){
 			while ($row = $result->fetch_assoc()) {				
 				$results[] = $row;
 				$cats[] = $row['CAT_NR'];
-				$dagen[] = $row['DAG'];
+				$dagen[] = $row['OMSCHR'];
 				
 				$smarty->assign("dagen", $dagen);
 				$smarty->assign("cats", $cats);

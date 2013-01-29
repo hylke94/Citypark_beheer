@@ -1,3 +1,4 @@
+
 <?php /* Smarty version Smarty-3.1.12, created on 2013-01-29 09:35:41
          compiled from "templates\tariefbeheer.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1983550f82a44346f01-76672211%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
@@ -8,6 +9,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     array (
       0 => 'templates\\tariefbeheer.tpl',
       1 => 1359364835,
+      1 => 1359204253,
       2 => 'file',
     ),
     'c131b6f68001cba64f85338acea39c6401c3aaeb' => 
@@ -112,7 +114,7 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['nr']['first']      = ($_smar
 $_smarty_tpl->tpl_vars['smarty']->value['section']['nr']['last']       = ($_smarty_tpl->tpl_vars['smarty']->value['section']['nr']['iteration'] == $_smarty_tpl->tpl_vars['smarty']->value['section']['nr']['total']);
 ?>
 		<tr>
-			<td valign="middle"><?php echo $_smarty_tpl->tpl_vars['results']->value[$_smarty_tpl->getVariable('smarty')->value['section']['nr']['index']]['DAG'];?>
+			<td valign="middle"><?php echo $_smarty_tpl->tpl_vars['results']->value[$_smarty_tpl->getVariable('smarty')->value['section']['nr']['index']]['OMSCHR'];?>
 </td>
 			<td valign="middle"><?php echo $_smarty_tpl->tpl_vars['results']->value[$_smarty_tpl->getVariable('smarty')->value['section']['nr']['index']]['STARTTIJD'];?>
 </td>
@@ -150,11 +152,8 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['nr']['last']       = ($_smar
 		<?php if ((isset($_smarty_tpl->tpl_vars['dagen']->value)||isset($_smarty_tpl->tpl_vars['cats']->value))){?>
 			<tr>
 				<td>
-					<select name="dagen" size="<?php echo count($_smarty_tpl->tpl_vars['dagen']->value);?>
-">
-						<?php echo smarty_function_html_options(array('values'=>$_smarty_tpl->tpl_vars['dagen']->value,'output'=>$_smarty_tpl->tpl_vars['dagen']->value),$_smarty_tpl);?>
+						<?php echo smarty_function_html_options(array('name'=>"dagen",'options'=>$_smarty_tpl->tpl_vars['dagen']->value),$_smarty_tpl);?>
 
-					</select>
 				</td>
 				<td><input type="text" name="starttijd" /></td>
 				<td><input type="text" name="eindtijd" /></td>

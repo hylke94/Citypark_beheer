@@ -24,7 +24,7 @@ Hieronder een overzicht van de bestaande tarieven welke gelden op de daarbij hor
 	{if (isset($results))}
 		{section name=nr loop=$results}
 		<tr>
-			<td valign="middle">{$results[nr].DAG}</td>
+			<td valign="middle">{$results[nr].OMSCHR}</td>
 			<td valign="middle">{$results[nr].STARTTIJD}</td>
 			<td valign="middle">{$results[nr].EINDTIJD}</td>
 			<td valign="middle">{$results[nr].CAT_NR}</td>
@@ -56,9 +56,7 @@ Hieronder een overzicht van de bestaande tarieven welke gelden op de daarbij hor
 		{if (isset($dagen) || isset($cats))}
 			<tr>
 				<td>
-					<select name="dagen" size="{$dagen|@count}">
-						{html_options values=$dagen output=$dagen}
-					</select>
+						{html_options name="dagen" options=$dagen}
 				</td>
 				<td><input type="text" name="starttijd" /></td>
 				<td><input type="text" name="eindtijd" /></td>
