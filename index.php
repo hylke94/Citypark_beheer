@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', '0');
+error_reporting(E_ALL | E_STRICT);
+
 require_once 'libs/Smarty.class.php';
 require_once 'functions.php';
 
@@ -44,6 +47,9 @@ else {
 	
 	if (file_exists("templates/".$_GET["page"].".tpl")){
 		$smarty->display("templates/".$_GET["page"].".tpl");
+	}
+	elseif ($_GET['page'] == "home"){
+			$smarty->display("templates/index_beheer.tpl");
 	}
 	else {
 		$smarty->display("templates/index.tpl");

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2013-01-28 10:08:20
+<?php /* Smarty version Smarty-3.1.12, created on 2013-01-29 09:35:41
          compiled from "templates\tariefbeheer.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1983550f82a44346f01-76672211%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -13,7 +13,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'c131b6f68001cba64f85338acea39c6401c3aaeb' => 
     array (
       0 => '.\\templates\\index_beheer.tpl',
-      1 => 1359102818,
+      1 => 1359375476,
       2 => 'file',
     ),
   ),
@@ -57,7 +57,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 						<a href="?page=tariefbeheer">Tariefbeheer</a>
 					</li>
 					<li>
-						<a href="?page=rapportages">Rapporgages</a>
+						<a href="?page=rapportages">Rapportages</a>
 					</li>
 					<li>
 						<a href="?page=uitloggen">Uitloggen</a>
