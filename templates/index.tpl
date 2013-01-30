@@ -10,6 +10,15 @@
 	<body>
 		{block name=body}
 		<div id="container">
+		{if !empty($errors)}
+			<div class="errors">
+				<ul>
+				{foreach from=$errors item=error}
+					  <li>{$error}</li>
+				{/foreach}
+				</ul>
+			</div>
+		{/if}
 			<div id="loginForm">
 				<h1>Inloggen</h1>
 				
