@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2013-01-09 17:02:35
+<?php /* Smarty version Smarty-3.1.12, created on 2013-01-22 10:44:16
          compiled from "templates\index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2646650ed8c3438ffe1-34399703%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'f90be83b235fb03cc225b11607032e9ddd415899' => 
     array (
       0 => 'templates\\index.tpl',
-      1 => 1357750951,
+      1 => 1358163519,
       2 => 'file',
     ),
   ),
@@ -19,6 +19,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'unifunc' => 'content_50ed8c343e9b09_26182879',
   'variables' => 
   array (
+    'errors' => 0,
+    'error' => 0,
     'SCRIPT_NAME' => 0,
   ),
   'has_nocache_code' => false,
@@ -35,6 +37,20 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	<body>
 		
 		<div id="container">
+		<?php if (!empty($_smarty_tpl->tpl_vars['errors']->value)){?>
+			<div class="errors">
+				<ul>
+				<?php  $_smarty_tpl->tpl_vars['error'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['error']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['errors']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['error']->key => $_smarty_tpl->tpl_vars['error']->value){
+$_smarty_tpl->tpl_vars['error']->_loop = true;
+?>
+					  <li><?php echo $_smarty_tpl->tpl_vars['error']->value;?>
+</li>
+				<?php } ?>
+				</ul>
+			</div>
+		<?php }?>
 			<div id="loginForm">
 				<h1>Inloggen</h1>
 				

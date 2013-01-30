@@ -1,6 +1,6 @@
 @CHARSET "ISO-8859-1";
 
-* { font-family: Courier;}
+* { font-family: Tahoma;}
 
 #container { 
 	border: 1px solid;
@@ -11,4 +11,62 @@
 
 #inlogForm { 
 	padding-left: 25px;
+}
+
+
+/**
+ * Beheer
+ */
+
+#beheer_container {
+	border: 1px solid black;
+	width: 950px;
+	margin: 0px auto;
+}
+
+#top {
+	border-bottom: 1px solid;
+}
+.header {
+	margin-left: 20px;
+}
+
+.welcometext {
+	margin-left: 20px;
+	margin-bottom: 10px;
+}
+
+.left {
+	width: 200px;
+	display: block;
+	float: left;
+}
+
+.right {
+
+	padding-left: 15px;
+	padding-top: 5px;
+	display: block;
+	float: left;
+	border-left: 1px solid;
+}
+
+.clearfix {
+	clear: both
+}
+
+/**
+ * Tabellen Beheer
+ */
+
+table.passen, .bestaandeTarieven, .nieuwTarief {
+	width: 720px;
+	text-align: center;
+}
+
+.updateGelukt {
+	background: lightgreen;
+	padding: 15px;
+	border: 1px solid green;
+	font-weight: bold;
 }
