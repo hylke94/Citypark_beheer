@@ -61,7 +61,7 @@
 				<td valign="middle">{$results[nr].INRIJDTIJD}</td>
 				<td valign="middle">{$results[nr].STATUS}</td>
 				<td>
-					<input type="checkbox" name="blockCbx" {if $results[nr].STATUS == 1} checked="checked"{/if} />
+					<input type="checkbox" name="blockCbx" {if $results[nr].STATUS == 0} checked="checked"{/if} />
 				</td>
 			</tr>
 			{/section}

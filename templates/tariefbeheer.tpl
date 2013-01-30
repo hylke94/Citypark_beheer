@@ -6,8 +6,18 @@
 
 <h1>Tariefbeheer</h1>
 
+{if !empty($fouten)}
+	<div class="errors">
+		<ul>
+		{foreach from=$fouten item=fout}
+			  <li>{$fout}</li>
+		{/foreach}
+		</ul>
+	</div>
+{/if}
 <p>Op deze pagina is het mogelijk om extra tarieven in te voeren. <br />
 Hieronder een overzicht van de bestaande tarieven welke gelden op de daarbij horende dagen.</p>
+
 
 {if isset($added) }
 	<p class="updateGelukt">Tarief is toegevoegd</p>
@@ -56,13 +66,12 @@ Hieronder een overzicht van de bestaande tarieven welke gelden op de daarbij hor
 		{if (isset($dagen) || isset($cats))}
 			<tr>
 				<td>
-						{html_options name="dagen" options=$dagen}
+					{html_options name="dagen" options=$dagen}
 				</td>
 				<td><input type="text" name="starttijd" /></td>
 				<td><input type="text" name="eindtijd" /></td>
 				<td>
-					<select name="cats" size="{$cats|@count}">
-					{html_options values=$cats output=$cats}
+					{html_options name="cats" values=$cats output=$cats}
 				</td>
 				<td><input type="text" name="ingangsdatum" /></td>
 			</tr>

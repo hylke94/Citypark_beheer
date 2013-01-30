@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2013-01-29 09:35:43
+<?php /* Smarty version Smarty-3.1.12, created on 2013-01-30 15:55:32
          compiled from "templates\blokkeren.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2104850f816935fd399-64312574%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,13 +7,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'db64ed584376d47614e1cb754c0e5d8b81110236' => 
     array (
       0 => 'templates\\blokkeren.tpl',
-      1 => 1359102818,
+      1 => 1359561329,
       2 => 'file',
     ),
     'c131b6f68001cba64f85338acea39c6401c3aaeb' => 
     array (
       0 => '.\\templates\\index_beheer.tpl',
-      1 => 1359375476,
+      1 => 1359415372,
       2 => 'file',
     ),
   ),
@@ -164,7 +164,7 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['nr']['last']       = ($_smar
 				<td valign="middle"><?php echo $_smarty_tpl->tpl_vars['results']->value[$_smarty_tpl->getVariable('smarty')->value['section']['nr']['index']]['STATUS'];?>
 </td>
 				<td>
-					<input type="checkbox" name="blockCbx" <?php if ($_smarty_tpl->tpl_vars['results']->value[$_smarty_tpl->getVariable('smarty')->value['section']['nr']['index']]['STATUS']==1){?> checked="checked"<?php }?> />
+					<input type="checkbox" name="blockCbx" <?php if ($_smarty_tpl->tpl_vars['results']->value[$_smarty_tpl->getVariable('smarty')->value['section']['nr']['index']]['STATUS']==0){?> checked="checked"<?php }?> />
 				</td>
 			</tr>
 			<?php endfor; endif; ?>
