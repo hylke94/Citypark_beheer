@@ -1,0 +1,1 @@
+http://citypark.hylke94.nl/bankservice/bankservice.php?wsdl

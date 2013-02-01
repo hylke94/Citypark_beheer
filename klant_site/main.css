@@ -1,0 +1,37 @@
+@CHARSET "ISO-8859-1";
+body {font-family:  Helvetica, Arial, Verdana, sans-serif;}
+
+div.menu { 
+width: 235px;
+heigth:300;
+position: relative;
+top:0px;
+left: 0px;
+}
+
+div.main { 
+position: relative ;
+top: -300px;
+left: 230px;
+text-align: left;
+}
+
+a.href:link {color: #0000FF;text-decoration: none;} 
+a.href:visited {color: #0000FF; text-decoration: none;}
+a.href:hover {color: #0000FF;text-decoration: none;}
+
+
+body.tekstveld {
+text-align: left;
+background-color:#ffffff;
+font-family:  Arial, Helvetica, Verdana, sans-serif;
+}
+
+div.mainbody {
+margin: 0 auto;
+width:825px;
+heigth:550;
+text-align: left;
+}
+
+

@@ -1,0 +1,64 @@
+<definitions xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="urn:bankservicewsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn:bankservicewsdl">
+<types>
+<xsd:schema targetNamespace="urn:bankservicewsdl">
+<xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+<xsd:import namespace="http://schemas.xmlsoap.org/wsdl/"/>
+</xsd:schema>
+</types>
+<message name="doCreditCheckRequest">
+<part name="accountnr" type="xsd:integer"/>
+<part name="amount" type="xsd:double"/>
+</message>
+<message name="doCreditCheckResponse">
+<part name="return" type="xsd:boolean"/>
+</message>
+<message name="transferRequest">
+<part name="accountfrom" type="xsd:integer"/>
+<part name="accountto" type="xsd:integer"/>
+<part name="amount" type="xsd:double"/>
+<part name="pin" type="xsd:integer"/>
+</message>
+<message name="transferResponse">
+<part name="return" type="xsd:boolean"/>
+</message>
+<portType name="bankservicewsdlPortType">
+<operation name="doCreditCheck">
+<documentation>Kijk of de klant genoeg saldo heeft.</documentation>
+<input message="tns:doCreditCheckRequest"/>
+<output message="tns:doCreditCheckResponse"/>
+</operation>
+<operation name="transfer">
+<documentation>
+Boek geld over van de eerste naar de tweede rekening.
+</documentation>
+<input message="tns:transferRequest"/>
+<output message="tns:transferResponse"/>
+</operation>
+</portType>
+<binding name="bankservicewsdlBinding" type="tns:bankservicewsdlPortType">
+<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+<operation name="doCreditCheck">
+<soap:operation soapAction="urn:bankservicewsdl#doCreditCheck" style="rpc"/>
+<input>
+<soap:body namespace="urn:bankservicewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body namespace="urn:bankservicewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="transfer">
+<soap:operation soapAction="urn:bankservicewsdl#transfer" style="rpc"/>
+<input>
+<soap:body namespace="urn:bankservicewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body namespace="urn:bankservicewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+</binding>
+<service name="bankservicewsdl">
+<port name="bankservicewsdlPort" binding="tns:bankservicewsdlBinding">
+<soap:address location="http://citypark.hylke94.nl/bankservice/bankservice.php"/>
+</port>
+</service>
+</definitions>
