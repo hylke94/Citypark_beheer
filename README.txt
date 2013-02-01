@@ -7,4 +7,4 @@ This project features:
 - Java sourcode to work with a RFID reader
 - Soapclient that acts as bank.
 
-Pim Vellinga, Hylke de Vries, Dane van der ZwaaG & Yorian Wiltjer
+Pim Vellinga, Hylke de Vries, Dane van der Zwaag & Yorian Wiltjer
